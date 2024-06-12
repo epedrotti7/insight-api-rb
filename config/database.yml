@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['POSTGRES_USER'] || 'insight' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || 'insight' %>
+  host: <%= ENV['POSTGRES_HOST'] || 'localhost' %>
+  port: <%= ENV['POSTGRES_PORT'] || 5433 %>
+
+development:
+  <<: *default
+  database: insightdb
+
+test:
+  <<: *default
+  database: insightdb_test
+
+production:
+  <<: *default
+  database: insightdb_production
